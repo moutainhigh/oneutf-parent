@@ -7,6 +7,8 @@
         <module>oneutf-framework</module>
         <module>oneutf-common</module>
         <module>oneutf-sys</module>
+        <module>hr</module>
+        <module>oneutf-hr</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
