@@ -29,6 +29,13 @@ public interface OrganizationService extends BeanService<Organization> {
     ApiResult<String> update(OrganizationDto organizationDto);
 
     /**
+     *  根据ID获取部门
+     * @param id
+     * @return
+     */
+    ApiResult<OrganizationVo> findById(String id);
+
+    /**
      *  删除部门
      * @param id
      * @return

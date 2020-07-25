@@ -1,5 +1,6 @@
 package com.oneutf.hr.model.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.oneutf.bean.model.dto.BeanDto;
 import com.oneutf.bean.model.entity.BeanEntity;
@@ -12,7 +13,7 @@ import java.util.Date;
 /**
  * @author Administrator 组织实体
  */
-@TableName("sys_org")
+@TableName("hr_org")
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
@@ -37,6 +38,7 @@ public class Organization extends BeanEntity {
     /**
      * 描述
      */
+    @TableField(value = "'describe'")
     private String describe;
     /**
      * 上级部门

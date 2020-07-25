@@ -15,6 +15,7 @@ import com.oneutf.sys.model.entity.SysRole;
 import com.oneutf.sys.model.entity.SysUser;
 import com.oneutf.sys.model.vo.SysUserVo;
 import com.oneutf.util.BeanUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,6 +29,9 @@ import static com.oneutf.bean.result.ApiResultUtils.success;
 @Service
 public class OrganizationServiceImpl extends BeanServiceImpl<OrganizationMapper,Organization> implements OrganizationService {
 
+
+    @Autowired
+    private EmployeeServiceImpl employeeService;
     @Override
     public ApiResult<String> create(OrganizationDto organizationDto) {
 
@@ -44,9 +48,20 @@ public class OrganizationServiceImpl extends BeanServiceImpl<OrganizationMapper,
     }
 
     @Override
+    public ApiResult<OrganizationVo> findById(String id) {
+        Organization organization =  this.getById(id);;
+        OrganizationVo organizationVo = BeanUtil.copyProperties(organization, OrganizationVo.class);
+        return success(organizationVo);
+    }
+
+    @Override
     public ApiResult<String> delete(String id) {
-        this.removeById(id);
-        return success("删除成功");
+        String msg = "删除失败";
+        if(this.employeeService.findEmpByDeptId(id).size()<=0){
+            this.removeById(id);
+            msg = "删除成功";
+        }
+        return success(msg);
     }
 
     @Override
