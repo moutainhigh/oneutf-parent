@@ -29,7 +29,7 @@ public class OrganizationController extends BaseController {
     @PostMapping("update")
     public ApiResult<String> update(OrganizationDto organizationDto) {
 
-        return organizationService.create(organizationDto);
+        return organizationService.update(organizationDto);
     }
 
     @PostMapping("delete")

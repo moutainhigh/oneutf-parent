@@ -37,7 +37,7 @@ public class EmployeeController extends BaseController {
     @PostMapping("update")
     public ApiResult<String> update(EmployeeDto employeeDto){
 
-        return employeeService.create(employeeDto);
+        return employeeService.update(employeeDto);
     }
 
     @PostMapping("delete")
