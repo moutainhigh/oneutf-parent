@@ -1,5 +1,6 @@
 package com.oneutf.sys.controller;
 
+import com.oneutf.bean.controller.BaseController;
 import com.oneutf.bean.result.ApiResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +15,7 @@ import static com.oneutf.bean.result.ApiResultUtils.success;
  */
 @RestController
 @RequestMapping
-public class DemoController {
+public class DemoController extends BaseController {
 
     @GetMapping("getStr")
     public ApiResult<String> getStr(){

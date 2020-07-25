@@ -57,4 +57,11 @@ public interface SysUserService extends BeanService<SysUser> {
      */
     ApiResult<String> delete(String id);
 
+    /**
+     * 登录
+     * @param sysUserDto dto
+     * @return String
+     */
+    ApiResult<String> login(SysUserDto sysUserDto);
+
 }

@@ -18,7 +18,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
+import static com.oneutf.bean.result.ApiResultUtils.failure;
 import static com.oneutf.bean.result.ApiResultUtils.success;
 
 /**
@@ -64,4 +66,12 @@ public class SysUserServiceImpl extends BeanServiceImpl<SysUserMapper, SysUser> 
         return success("删除成功");
     }
 
+    @Override
+    public ApiResult<String> login(SysUserDto sysUserDto) {
+        SysUser entity = lambdaQuery().eq(SysUser::getName, sysUserDto.getName()).getEntity();
+        if(!Objects.equals(sysUserDto.getPassword(), entity.getPassword())){
+            return failure("账号密码错误");
+        }
+        return success("登录成功");
+    }
 }

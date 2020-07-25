@@ -1,6 +1,7 @@
 package com.oneutf.sys.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.oneutf.bean.controller.BaseController;
 import com.oneutf.bean.result.ApiResult;
 import com.oneutf.sys.model.dto.SysUserDto;
 import com.oneutf.sys.model.query.SysUserQuery;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("sys/user")
-public class SysUserController {
+public class SysUserController extends BaseController {
 
     @Autowired
     private SysUserService sysUserService;
@@ -43,5 +44,10 @@ public class SysUserController {
     @GetMapping("delete/{id}")
     public ApiResult<String> delete(@PathVariable("id") String id) {
         return sysUserService.delete(id);
+    }
+
+    @PostMapping("login")
+    public ApiResult<String> login(SysUserDto dto) {
+        return sysUserService.login(dto);
     }
 }

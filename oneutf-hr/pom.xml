@@ -15,7 +15,7 @@
         <dependency>
             <groupId>com.oneutf</groupId>
             <artifactId>oneutf-sys</artifactId>
-            <version></version>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
