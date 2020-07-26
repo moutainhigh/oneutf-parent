@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -18,11 +19,11 @@ public class OrganizationDto extends BeanDto {
     /**
      * 名称
      */
-    private String orgName;
+    private String name;
     /**
      * 类型
      */
-    private String orgType;
+    private String type;
     /**
      * 电话
      */
@@ -34,14 +35,14 @@ public class OrganizationDto extends BeanDto {
     /**
      * 描述
      */
-    private String describe;
+    private String desc;
     /**
      * 上级部门
      */
-    private String deptParentId;
+    private String deptParent;
     /**
      * 成立日期
      */
-    private Date establishTime;
+    private LocalDateTime establishTime;
 
 }

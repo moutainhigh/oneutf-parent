@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -20,13 +21,17 @@ import java.util.Date;
 public class Organization extends BeanEntity {
 
     /**
+     * 编号
+     */
+    private String code;
+    /**
      * 名称
      */
-    private String orgName;
+    private String name;
     /**
      * 类型
      */
-    private String orgType;
+    private String type;
     /**
      * 电话
      */
@@ -38,15 +43,15 @@ public class Organization extends BeanEntity {
     /**
      * 描述
      */
-    @TableField(value = "'describe'")
-    private String describe;
+    @TableField(value = "`desc`")
+    private String desc;
     /**
      * 上级部门
      */
-    private String deptParentId;
+    private String deptParent;
     /**
      * 成立日期
      */
-    private Date establishTime;
+    private LocalDateTime establishTime;
 
 }

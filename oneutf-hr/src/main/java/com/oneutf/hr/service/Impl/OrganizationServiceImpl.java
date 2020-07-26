@@ -67,6 +67,7 @@ public class OrganizationServiceImpl extends BeanServiceImpl<OrganizationMapper,
     @Override
     public ApiResult<PageInfo<OrganizationVo>> getDataTable(OrganizationQuery qo) {
         PageHelper.startPage(qo.getPage(), qo.getLimit());
+
         List<Organization> entityList = lambdaQuery().list();
         List<OrganizationVo> vos = BeanUtil.voTransfer(entityList, OrganizationVo.class);
         PageInfo<OrganizationVo> pageInfo = new PageInfo<>(vos);

@@ -16,4 +16,7 @@ public class ApiResultUtils<T> {
         return ApiResult.<T>builder().code(ApiResultEnum.FAILURE.getCode()).msg(ApiResultEnum.FAILURE.getMsg()).data(data).build();
     }
 
+    public static <T>ApiResult<T> unknown(T data){
+        return ApiResult.<T>builder().code(ApiResultEnum.UNKNOWN.getCode()).msg(ApiResultEnum.FAILURE.getMsg()).data(data).build();
+    }
 }

@@ -12,15 +12,15 @@ public enum ApiResultEnum {
     /**
      * 成功状态
      */
-    SUCCESS(Const.RESPONSE_SUCCESS_STATUS_CODE, "成功"),
+    SUCCESS(Const.RESPONSE_SUCCESS_STATUS_CODE, Const.RESPONSE_SUCCESS_MESSAGE),
     /**
      * 系统异常
      */
-    FAILURE(Const.RESPONSE_INTERNAL_FAILURE_STATUS_CODE, "系统异常"),
+    FAILURE(Const.RESPONSE_INTERNAL_FAILURE_STATUS_CODE, Const.RESPONSE_INTERNAL_FAILURE_MESSAGE),
     /**
      * 未知异常
      */
-    UNKNOWN(Const.RESPONSE_UNKNOWN_FAILURE_STATUS_CODE, "未知异常");
+    UNKNOWN(Const.RESPONSE_UNKNOWN_FAILURE_STATUS_CODE, Const.RESPONSE_UNKNOWN_FAILURE_MESSAGE);
 
     private Integer code;
     private String msg;

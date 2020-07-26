@@ -68,8 +68,8 @@ public class SysUserServiceImpl extends BeanServiceImpl<SysUserMapper, SysUser> 
 
     @Override
     public ApiResult<String> login(SysUserDto sysUserDto) {
-        SysUser entity = lambdaQuery().eq(SysUser::getName, sysUserDto.getName()).getEntity();
-        if(!Objects.equals(sysUserDto.getPassword(), entity.getPassword())){
+        SysUser entity = lambdaQuery().eq(SysUser::getName, sysUserDto.getName()).one();
+        if(null == entity || !Objects.equals(sysUserDto.getPassword(), entity.getPassword())){
             return failure("账号密码错误");
         }
         return success("登录成功");
