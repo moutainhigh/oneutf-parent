@@ -4,6 +4,7 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/oneutf_hr?serverTimezone=Asia/Shanghai
     username: root
     password: 123456
+
 mybatis-plus:
   global-config:
     db-config:
