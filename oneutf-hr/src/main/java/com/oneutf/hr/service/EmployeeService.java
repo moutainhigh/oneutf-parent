@@ -22,7 +22,7 @@ public interface EmployeeService extends BeanService<Employee> {
     ApiResult<String> create(EmployeeDto employeeDto);
 
     /**
-     *  修改员工信息
+     *  查询员工信息
      * @param id
      * @return
      */
@@ -55,4 +55,11 @@ public interface EmployeeService extends BeanService<Employee> {
      * @return
      */
     List<Employee> findEmpByDeptId(String deptId);
+
+    /**
+     * 根据岗位id获取人员信息
+     * @param postId
+     * @return
+     */
+    List<Employee> findEmpByPostId(String postId);
 }

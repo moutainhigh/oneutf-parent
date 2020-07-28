@@ -66,4 +66,10 @@ public class EmployeeServiceImpl extends BeanServiceImpl<EmployeeMapper,Employee
         List<Employee> employees = lambdaQuery().eq(Employee::getDeptId,deptId).list();
         return employees;
     }
+
+    @Override
+    public List<Employee> findEmpByPostId(String postId) {
+        List<Employee> employees = lambdaQuery().eq(Employee::getPositionId,postId).list();
+        return employees;
+    }
 }
