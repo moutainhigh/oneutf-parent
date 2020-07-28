@@ -1,10 +1,19 @@
 package com.oneutf.hr.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.oneutf.bean.model.dto.BeanDto;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -43,6 +52,7 @@ public class OrganizationDto extends BeanDto {
     /**
      * 成立日期
      */
-    private LocalDateTime establishTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate establishDate;
 
 }

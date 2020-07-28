@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -17,10 +18,6 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 public class OrganizationVo extends BeanVo {
 
-    /**
-     * 编号
-     */
-    private String code;
     /**
      * 名称
      */
@@ -48,6 +45,6 @@ public class OrganizationVo extends BeanVo {
     /**
      * 成立日期
      */
-    private LocalDateTime establishTime;
+    private LocalDate establishDate;
 
 }

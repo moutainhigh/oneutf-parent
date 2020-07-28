@@ -2,13 +2,14 @@ package com.oneutf.bean.model.dto;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
  * @author oneutf
  */
 @Data
-public class BeanDto {
+public class BeanDto implements Serializable {
 
     private String id;
 
