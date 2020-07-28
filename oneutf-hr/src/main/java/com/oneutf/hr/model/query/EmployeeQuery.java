@@ -29,7 +29,7 @@ public class EmployeeQuery extends BeanQuery {
     /**
      *出生日期
      */
-    private Date birthday;
+    private LocalDate birthday;
     /**
      *身份证号
      */
@@ -45,11 +45,11 @@ public class EmployeeQuery extends BeanQuery {
     /**
      *入职日期
      */
-    private Date entryTime;
+    private LocalDate entryDate;
     /**
      *参加工作日期
      */
-    private Date firstWorkTime;
+    private LocalDate firstWorkDate;
     /**
      *用工形式
      */

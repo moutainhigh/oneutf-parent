@@ -58,6 +58,7 @@ public class OrganizationDto extends BeanDto {
     /**
      * 成立日期
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate establishDate;
 
 }
