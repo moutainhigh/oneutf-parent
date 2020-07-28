@@ -1,5 +1,6 @@
 package com.oneutf.hr.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.oneutf.bean.model.dto.BeanDto;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -27,6 +28,7 @@ public class EmployeeDto extends BeanDto {
     /**
      *出生日期
      */
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
     /**
      *身份证号
@@ -43,10 +45,12 @@ public class EmployeeDto extends BeanDto {
     /**
      *入职日期
      */
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate entryDate;
     /**
      *参加工作日期
      */
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate firstWorkDate;
     /**
      *用工形式
@@ -115,6 +119,7 @@ public class EmployeeDto extends BeanDto {
     /**
      *毕业日期
      */
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate graduationDate;
 
 }

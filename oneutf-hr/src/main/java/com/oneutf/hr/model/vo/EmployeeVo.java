@@ -1,5 +1,6 @@
 package com.oneutf.hr.model.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.oneutf.bean.model.query.BeanQuery;
 import com.oneutf.bean.model.vo.BeanVo;
 import lombok.Data;
@@ -28,6 +29,7 @@ public class EmployeeVo extends BeanVo {
     /**
      *出生日期
      */
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
     /**
      *身份证号
@@ -44,10 +46,12 @@ public class EmployeeVo extends BeanVo {
     /**
      *入职日期
      */
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate entryDate;
     /**
      *参加工作日期
      */
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate firstWorkDate;
     /**
      *用工形式
@@ -116,6 +120,7 @@ public class EmployeeVo extends BeanVo {
     /**
      *毕业日期
      */
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate graduationDate;
 
 }

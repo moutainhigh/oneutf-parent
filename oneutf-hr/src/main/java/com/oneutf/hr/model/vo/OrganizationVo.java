@@ -1,6 +1,7 @@
 package com.oneutf.hr.model.vo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.oneutf.bean.model.dto.BeanDto;
 import com.oneutf.bean.model.vo.BeanVo;
 import lombok.Data;
@@ -42,7 +43,6 @@ public class OrganizationVo extends BeanVo {
     /**
      * 描述
      */
-    @TableField(value = "`desc`")
     private String desc;
     /**
      * 上级部门
@@ -51,6 +51,7 @@ public class OrganizationVo extends BeanVo {
     /**
      * 成立日期
      */
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate establishDate;
 
 }
