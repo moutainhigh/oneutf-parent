@@ -19,6 +19,10 @@ import java.util.Date;
 public class EmployeeQuery extends BeanQuery {
 
     /**
+     * 员工号
+     */
+    private String code;
+    /**
      *姓名
      */
     private String name;

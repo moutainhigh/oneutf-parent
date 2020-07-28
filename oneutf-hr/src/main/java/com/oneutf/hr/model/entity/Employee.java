@@ -20,6 +20,10 @@ import java.util.Date;
 public class Employee extends BeanEntity {
 
     /**
+     * 员工号
+     */
+    private String code;
+    /**
      *姓名
      */
     private String name;

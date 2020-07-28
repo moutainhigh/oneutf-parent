@@ -49,7 +49,6 @@ public class OrganizationDto extends BeanDto {
     /**
      * 描述
      */
-    @TableField(value = "`desc`")
     private String desc;
     /**
      * 上级部门

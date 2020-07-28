@@ -42,7 +42,6 @@ public class OrganizationQuery extends BeanQuery {
     /**
      * 描述
      */
-    @TableField(value = "`desc`")
     private String desc;
     /**
      * 上级部门
