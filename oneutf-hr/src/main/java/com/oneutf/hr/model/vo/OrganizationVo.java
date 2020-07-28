@@ -1,5 +1,6 @@
 package com.oneutf.hr.model.vo;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.oneutf.bean.model.dto.BeanDto;
 import com.oneutf.bean.model.vo.BeanVo;
 import lombok.Data;
@@ -19,6 +20,10 @@ import java.util.Date;
 public class OrganizationVo extends BeanVo {
 
     /**
+     * 编号
+     */
+    private String code;
+    /**
      * 名称
      */
     private String name;
@@ -37,6 +42,7 @@ public class OrganizationVo extends BeanVo {
     /**
      * 描述
      */
+    @TableField(value = "`desc`")
     private String desc;
     /**
      * 上级部门

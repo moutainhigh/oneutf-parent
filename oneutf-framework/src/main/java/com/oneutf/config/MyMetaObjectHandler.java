@@ -17,14 +17,14 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
         log.info("start install fill ......");
-        this.strictInsertFill(metaObject, "createTime", LocalDateTime.class, LocalDateTime.now());
+//        this.strictInsertFill(metaObject, "createTime", LocalDateTime.class, LocalDateTime.now());
         log.info("end install fill ......");
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
         log.info("start update fill ......");
-        this.strictUpdateFill(metaObject, "updateTime", LocalDateTime.class, LocalDateTime.now());
+//        this.strictUpdateFill(metaObject, "updateTime", LocalDateTime.class, LocalDateTime.now());
         log.info("end update fill ......");
     }
 }

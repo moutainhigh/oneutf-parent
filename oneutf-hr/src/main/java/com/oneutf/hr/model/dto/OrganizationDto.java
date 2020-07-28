@@ -1,5 +1,6 @@
 package com.oneutf.hr.model.dto;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -26,6 +27,10 @@ import java.util.Date;
 public class OrganizationDto extends BeanDto {
 
     /**
+     * 编号
+     */
+    private String code;
+    /**
      * 名称
      */
     private String name;
@@ -44,6 +49,7 @@ public class OrganizationDto extends BeanDto {
     /**
      * 描述
      */
+    @TableField(value = "`desc`")
     private String desc;
     /**
      * 上级部门
@@ -52,7 +58,6 @@ public class OrganizationDto extends BeanDto {
     /**
      * 成立日期
      */
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate establishDate;
 
 }

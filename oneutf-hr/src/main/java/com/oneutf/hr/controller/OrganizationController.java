@@ -1,9 +1,11 @@
 package com.oneutf.hr.controller;
 
 
+import com.github.pagehelper.PageInfo;
 import com.oneutf.bean.controller.BaseController;
 import com.oneutf.bean.result.ApiResult;
 import com.oneutf.hr.model.dto.OrganizationDto;
+import com.oneutf.hr.model.query.OrganizationQuery;
 import com.oneutf.hr.model.vo.OrganizationVo;
 import com.oneutf.hr.service.OrganizationService;
 import org.apache.ibatis.annotations.Param;
@@ -19,6 +21,11 @@ public class OrganizationController extends BaseController {
 
     @Autowired
     private OrganizationService organizationService;
+
+    @PostMapping("getDataTable")
+    public ApiResult<PageInfo<OrganizationVo>> getDataTable(OrganizationQuery qo){
+        return organizationService.getDataTable(qo);
+    }
 
     @PostMapping("create")
     public ApiResult<String> create(OrganizationDto organizationDto) {

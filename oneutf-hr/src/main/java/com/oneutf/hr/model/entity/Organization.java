@@ -21,6 +21,11 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 public class Organization extends BeanEntity {
 
+
+    /**
+     * 编号
+     */
+    private String code;
     /**
      * 名称
      */
@@ -40,6 +45,7 @@ public class Organization extends BeanEntity {
     /**
      * 描述
      */
+    @TableField(value = "`desc`")
     private String desc;
     /**
      * 上级部门

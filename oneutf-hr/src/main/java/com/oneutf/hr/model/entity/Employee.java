@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -84,7 +85,6 @@ public class Employee extends BeanEntity {
     private String height;
     /**
      *血型
-     *
      */
     private String bloodType;
     /**
@@ -118,6 +118,6 @@ public class Employee extends BeanEntity {
     /**
      *毕业日期
      */
-    private Date graduationTime;
+    private LocalDate graduationDate;
 
 }
