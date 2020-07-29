@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 /**
  * @author Administrator //组织控制类
  */
@@ -29,31 +31,27 @@ public class EmployeeController extends BaseController {
     private EmployeeService employeeService;
 
     @PostMapping("create")
-    public ApiResult<String> create(EmployeeDto employeeDto){
-
+    public ApiResult<String> create(@Valid EmployeeDto employeeDto){
         return employeeService.create(employeeDto);
     }
 
     @PostMapping("update")
     public ApiResult<String> update(EmployeeDto employeeDto){
-
         return employeeService.update(employeeDto);
     }
 
     @PostMapping("delete")
-    public ApiResult<String> delete(@RequestParam(value="id",required=false)String id){
-
+    public ApiResult<String> delete(String id){
         return employeeService.delete(id);
     }
 
     @PostMapping("getDataTable")
     public ApiResult<PageInfo<EmployeeVo>> getDataTable(EmployeeQuery qo){
-
         return employeeService.getDataTable(qo);
     }
+
     @PostMapping("findById")
     public ApiResult<EmployeeVo> findById(String id){
-
         return employeeService.findById(id);
     }
 

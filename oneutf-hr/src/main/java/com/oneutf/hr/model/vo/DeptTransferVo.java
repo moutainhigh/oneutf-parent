@@ -21,20 +21,22 @@ public class DeptTransferVo extends BeanVo {
      * 员工名字
      */
     private String empId;
+    private String empName;
     /**
      * 调转后的部门
      */
     private String afterDeptId;
+    private String afterDeptName;
 
     /**
      * 调转类型
      */
-    private String TransferType;
+    private String transferType;
 
     /**
      * 调转原因
      */
-    private String TransferReason;
+    private String transferReason;
     /**
      * 备注
      */
@@ -43,6 +45,6 @@ public class DeptTransferVo extends BeanVo {
      *调动日期
      */
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate TransferTime;
+    private LocalDate transferTime;
 
 }

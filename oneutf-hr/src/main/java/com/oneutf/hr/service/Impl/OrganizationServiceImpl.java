@@ -1,5 +1,6 @@
 package com.oneutf.hr.service.Impl;
 
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.oneutf.bean.result.ApiResult;
@@ -70,6 +71,11 @@ public class OrganizationServiceImpl extends BeanServiceImpl<OrganizationMapper,
 
         List<Organization> entityList = lambdaQuery().list();
         List<OrganizationVo> vos = BeanUtil.voTransfer(entityList, OrganizationVo.class);
+        vos.forEach(vo -> {
+            if(StringUtils.isNotBlank(vo.getDeptParent())){
+                vo.setDeptParentName(this.getById(vo.getDeptParent()).getName());
+            }
+        });
         PageInfo<OrganizationVo> pageInfo = new PageInfo<>(vos);
         return success(pageInfo);
     }

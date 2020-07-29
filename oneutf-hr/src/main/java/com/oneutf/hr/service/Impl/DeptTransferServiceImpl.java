@@ -9,12 +9,15 @@ import com.oneutf.hr.mapper.PositionMapper;
 import com.oneutf.hr.model.dto.DeptTransferDto;
 import com.oneutf.hr.model.dto.PositionDto;
 import com.oneutf.hr.model.entity.DeptTransfer;
+import com.oneutf.hr.model.entity.Employee;
 import com.oneutf.hr.model.entity.Position;
 import com.oneutf.hr.model.query.DeptTransferQuery;
 import com.oneutf.hr.model.query.PositionQuery;
 import com.oneutf.hr.model.vo.DeptTransferVo;
 import com.oneutf.hr.model.vo.PositionVo;
 import com.oneutf.hr.service.DeptTransferService;
+import com.oneutf.hr.service.EmployeeService;
+import com.oneutf.hr.service.OrganizationService;
 import com.oneutf.hr.service.PositionService;
 import com.oneutf.util.BeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +30,19 @@ import static com.oneutf.bean.result.ApiResultUtils.success;
 @Service
 public class DeptTransferServiceImpl extends BeanServiceImpl<DeptTransferMapper, DeptTransfer> implements DeptTransferService {
 
+    @Autowired
+    private EmployeeService employeeService;
+    @Autowired
+    private OrganizationService organizationService;
+
     @Override
     public ApiResult<String> create(DeptTransferDto deptTransferDto) {
+        if ("数据错误".equals(deptTransferDto.getTransferType())) {
+            return success("调转成功");
+        }
+        Employee employee = employeeService.getById(deptTransferDto.getEmpId());
+        employee.setDeptId(deptTransferDto.getAfterDeptId());
+        employeeService.updateById(employee);
         DeptTransfer deptTransfer = BeanUtil.copyProperties(deptTransferDto, DeptTransfer.class);
         this.save(deptTransfer);
         return success("创建成功");
@@ -37,7 +51,7 @@ public class DeptTransferServiceImpl extends BeanServiceImpl<DeptTransferMapper,
     @Override
     public ApiResult<DeptTransferVo> findById(String id) {
         DeptTransfer deptTransfer = this.getById(id);
-        DeptTransferVo deptTransferVo = BeanUtil.copyProperties(deptTransfer,DeptTransferVo.class);
+        DeptTransferVo deptTransferVo = BeanUtil.copyProperties(deptTransfer, DeptTransferVo.class);
         return success(deptTransferVo);
     }
 
@@ -50,7 +64,7 @@ public class DeptTransferServiceImpl extends BeanServiceImpl<DeptTransferMapper,
 
     @Override
     public ApiResult<String> delete(String id) {
-            this.removeById(id);
+        this.removeById(id);
         return success("删除成功");
     }
 
@@ -59,6 +73,10 @@ public class DeptTransferServiceImpl extends BeanServiceImpl<DeptTransferMapper,
         PageHelper.startPage(qo.getPage(), qo.getLimit());
         List<DeptTransfer> entityList = lambdaQuery().list();
         List<DeptTransferVo> vos = BeanUtil.voTransfer(entityList, DeptTransferVo.class);
+        vos.forEach(vo -> {
+            vo.setEmpName(employeeService.getById(vo.getEmpId()).getName());
+            vo.setAfterDeptName(organizationService.getById(vo.getAfterDeptId()).getName());
+        });
         PageInfo<DeptTransferVo> pageInfo = new PageInfo<>(vos);
         return success(pageInfo);
     }

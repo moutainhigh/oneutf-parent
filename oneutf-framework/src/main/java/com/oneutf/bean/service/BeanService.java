@@ -14,4 +14,12 @@ public interface BeanService<E extends BeanEntity> extends IService<E> {
      * @return 消息
      */
     String validate(E e);
+
+    /**
+     * 封装保存方法
+     * @param entity
+     * @return
+     * @throws Exception
+     */
+    Boolean add(E entity) throws Exception;
 }

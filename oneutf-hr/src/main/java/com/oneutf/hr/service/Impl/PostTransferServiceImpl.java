@@ -9,12 +9,15 @@ import com.oneutf.hr.mapper.PostTransferMapper;
 import com.oneutf.hr.model.dto.DeptTransferDto;
 import com.oneutf.hr.model.dto.PostTransferDto;
 import com.oneutf.hr.model.entity.DeptTransfer;
+import com.oneutf.hr.model.entity.Employee;
 import com.oneutf.hr.model.entity.PostTransfer;
 import com.oneutf.hr.model.query.DeptTransferQuery;
 import com.oneutf.hr.model.query.PostTransferQuery;
 import com.oneutf.hr.model.vo.DeptTransferVo;
 import com.oneutf.hr.model.vo.PostTransferVo;
 import com.oneutf.hr.service.DeptTransferService;
+import com.oneutf.hr.service.EmployeeService;
+import com.oneutf.hr.service.PositionService;
 import com.oneutf.hr.service.PostTransferService;
 import com.oneutf.util.BeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +30,20 @@ import static com.oneutf.bean.result.ApiResultUtils.success;
 @Service
 public class PostTransferServiceImpl extends BeanServiceImpl<PostTransferMapper, PostTransfer> implements PostTransferService {
 
+    @Autowired
+    private EmployeeService employeeService;
+
+    @Autowired
+    private PositionService positionService;
+
     @Override
     public ApiResult<String> create(PostTransferDto postTransferDto) {
+        if ("数据录入错误".equals(postTransferDto.getTransferType())) {
+            return success("调转成功");
+        }
+        Employee employee = employeeService.getById(postTransferDto.getEmpId());
+        employee.setPositionId(postTransferDto.getAfterPostId());
+        employeeService.updateById(employee);
         PostTransfer postTransfer = BeanUtil.copyProperties(postTransferDto, PostTransfer.class);
         this.save(postTransfer);
         return success("创建成功");
@@ -59,6 +74,10 @@ public class PostTransferServiceImpl extends BeanServiceImpl<PostTransferMapper,
         PageHelper.startPage(qo.getPage(), qo.getLimit());
         List<PostTransfer> entityList = lambdaQuery().list();
         List<PostTransferVo> vos = BeanUtil.voTransfer(entityList, PostTransferVo.class);
+        vos.forEach(vo -> {
+            vo.setEmpName(employeeService.getById(vo.getEmpId()).getName());
+            vo.setAfterPostName(positionService.getById(vo.getAfterPostId()).getJobTitle());
+        });
         PageInfo<PostTransferVo> pageInfo = new PageInfo<>(vos);
         return success(pageInfo);
     }

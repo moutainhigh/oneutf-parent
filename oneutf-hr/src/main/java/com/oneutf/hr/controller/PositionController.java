@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 /**
  * @author Administrator
  */
@@ -30,26 +32,22 @@ public class PositionController {
     }
 
     @PostMapping("create")
-    public ApiResult<String> create(PositionDto positionDto) {
-
+    public ApiResult<String> create(@Valid PositionDto positionDto) {
         return positionService.create(positionDto);
     }
 
     @PostMapping("update")
     public ApiResult<String> update(PositionDto positionDto) {
-
         return positionService.update(positionDto);
     }
 
     @PostMapping("delete")
     public ApiResult<String> delete(String id) {
-
         return positionService.delete(id);
     }
 
     @PostMapping("findById")
     public ApiResult<PositionVo> findById(String id) {
-
         return positionService.findById(id);
     }
 

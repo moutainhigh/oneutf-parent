@@ -29,12 +29,12 @@ public class DeptTransferQuery extends BeanQuery {
     /**
      * 调转类型
      */
-    private String TransferType;
+    private String transferType;
 
     /**
      * 调转原因
      */
-    private String TransferReason;
+    private String transferReason;
     /**
      * 备注
      */
@@ -43,6 +43,6 @@ public class DeptTransferQuery extends BeanQuery {
      *调动日期
      */
 
-    private LocalDate TransferTime;
+    private LocalDate transferTime;
 
 }

@@ -48,6 +48,7 @@ public class OrganizationVo extends BeanVo {
      * 上级部门
      */
     private String deptParent;
+    private String deptParentName;
     /**
      * 成立日期
      */

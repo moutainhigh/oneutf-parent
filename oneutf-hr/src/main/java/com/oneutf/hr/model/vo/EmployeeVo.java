@@ -43,10 +43,12 @@ public class EmployeeVo extends BeanVo {
      *部门
      */
     private String deptId;
+    private String deptName;
     /**
      *岗位
      */
     private String positionId;
+    private String positionName;
     /**
      *入职日期
      */

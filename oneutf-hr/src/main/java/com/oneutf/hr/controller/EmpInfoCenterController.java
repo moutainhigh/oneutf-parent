@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Administrator
  */
 @RestController
-@RequestMapping("hr/empQuit")
+@RequestMapping("hr/empInfoCenter")
 public class EmpInfoCenterController {
     @Autowired
     private EmpInfoCenterService empInfoCenterService;

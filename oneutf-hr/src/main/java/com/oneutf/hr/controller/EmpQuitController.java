@@ -31,31 +31,26 @@ public class EmpQuitController {
 
     @PostMapping("create")
     public ApiResult<String> create(EmpQuitDto empQuitDto) {
-
         return empQuitService.create(empQuitDto);
     }
 
     @PostMapping("update")
     public ApiResult<String> update(EmpQuitDto empQuitDto) {
-
         return empQuitService.update(empQuitDto);
     }
 
     @PostMapping("delete")
     public ApiResult<String> delete(String id) {
-
         return empQuitService.delete(id);
     }
 
     @PostMapping("findById")
     public ApiResult<EmpQuitVo> findById(String id) {
-
         return empQuitService.findById(id);
     }
 
     @PostMapping("findByEmpId")
     public ApiResult<EmpQuitVo> findByEmpId(String id) {
-
         return empQuitService.findByEmpId(id);
     }
 

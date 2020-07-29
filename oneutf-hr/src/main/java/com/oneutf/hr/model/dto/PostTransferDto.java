@@ -20,19 +20,19 @@ public class PostTransferDto extends BeanDto {
      */
     private String empId;
     /**
-     * 调转后的部门
+     * 调转后的岗位
      */
     private String afterPostId;
 
     /**
      * 调转类型
      */
-    private String TransferType;
+    private String transferType;
 
     /**
      * 调转原因
      */
-    private String TransferReason;
+    private String transferReason;
     /**
      * 备注
      */
@@ -41,6 +41,6 @@ public class PostTransferDto extends BeanDto {
      *调动日期
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate TransferTime;
+    private LocalDate transferTime;
 
 }

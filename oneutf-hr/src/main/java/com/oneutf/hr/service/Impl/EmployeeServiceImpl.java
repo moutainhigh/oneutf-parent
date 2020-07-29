@@ -10,7 +10,10 @@ import com.oneutf.hr.model.entity.Employee;
 import com.oneutf.hr.model.query.EmployeeQuery;
 import com.oneutf.hr.model.vo.EmployeeVo;
 import com.oneutf.hr.service.EmployeeService;
+import com.oneutf.hr.service.OrganizationService;
+import com.oneutf.hr.service.PositionService;
 import com.oneutf.util.BeanUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,9 +27,14 @@ import static com.oneutf.bean.result.ApiResultUtils.success;
 @Service
 public class EmployeeServiceImpl extends BeanServiceImpl<EmployeeMapper,Employee> implements EmployeeService {
 
+    @Autowired
+    private OrganizationService organizationService;
+
+    @Autowired
+    private PositionService positionService;
+
     @Override
     public ApiResult<String> create(EmployeeDto employeeDto) {
-
         Employee employee = BeanUtil.copyProperties(employeeDto, Employee.class);
         this.save(employee);
         return success("创建成功");
@@ -57,6 +65,10 @@ public class EmployeeServiceImpl extends BeanServiceImpl<EmployeeMapper,Employee
         PageHelper.startPage(qo.getPage(), qo.getLimit());
         List<Employee> entityList = lambdaQuery().list();
         List<EmployeeVo> vos = BeanUtil.voTransfer(entityList, EmployeeVo.class);
+        vos.forEach(vo -> {
+            vo.setDeptName(organizationService.findById(vo.getDeptId()).getData().getName());
+            vo.setPositionName(positionService.findById(vo.getPositionId()).getData().getJobTitle());
+        });
         PageInfo<EmployeeVo> pageInfo = new PageInfo<>(vos);
         return success(pageInfo);
     }

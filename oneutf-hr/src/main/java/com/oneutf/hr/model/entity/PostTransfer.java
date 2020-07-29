@@ -23,19 +23,19 @@ public class PostTransfer extends BeanEntity {
      */
     private String empId;
     /**
-     * 调转后的部门
+     * 调转后的岗位
      */
     private String afterPostId;
 
     /**
      * 调转类型
      */
-    private String TransferType;
+    private String transferType;
 
     /**
      * 调转原因
      */
-    private String TransferReason;
+    private String transferReason;
     /**
      * 备注
      */
@@ -43,6 +43,6 @@ public class PostTransfer extends BeanEntity {
     /**
      *调动日期
      */
-    private LocalDate TransferTime;
+    private LocalDate transferTime;
 
 }

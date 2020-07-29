@@ -12,6 +12,8 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 /**
  * @author Administrator //组织控制类
  */
@@ -28,26 +30,22 @@ public class OrganizationController extends BaseController {
     }
 
     @PostMapping("create")
-    public ApiResult<String> create(OrganizationDto organizationDto) {
-
+    public ApiResult<String> create(@Valid OrganizationDto organizationDto) {
         return organizationService.create(organizationDto);
     }
 
     @PostMapping("update")
     public ApiResult<String> update(OrganizationDto organizationDto) {
-
         return organizationService.update(organizationDto);
     }
 
     @PostMapping("delete")
     public ApiResult<String> delete(String id) {
-
         return organizationService.delete(id);
     }
 
     @PostMapping("findById")
     public ApiResult<OrganizationVo> findById(String id) {
-
         return organizationService.findById(id);
     }
 

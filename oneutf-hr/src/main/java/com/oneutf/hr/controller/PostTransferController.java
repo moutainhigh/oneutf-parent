@@ -31,25 +31,21 @@ public class PostTransferController {
 
     @PostMapping("create")
     public ApiResult<String> create(PostTransferDto postTransferDto) {
-
         return postTransferService.create(postTransferDto);
     }
 
     @PostMapping("update")
     public ApiResult<String> update(PostTransferDto postTransferDto) {
-
         return postTransferService.update(postTransferDto);
     }
 
     @PostMapping("delete")
     public ApiResult<String> delete(String id) {
-
         return postTransferService.delete(id);
     }
 
     @PostMapping("findById")
     public ApiResult<PostTransferVo> findById(String id) {
-
         return postTransferService.findById(id);
     }
 
