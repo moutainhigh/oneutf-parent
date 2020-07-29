@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : mysql
+ Source Server         : localhost
  Source Server Type    : MySQL
- Source Server Version : 50727
+ Source Server Version : 50724
  Source Host           : localhost:3306
  Source Schema         : oneutf_hr
 
  Target Server Type    : MySQL
- Target Server Version : 50727
+ Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 28/07/2020 22:05:37
+ Date: 29/07/2020 21:16:36
 */
 
 SET NAMES utf8mb4;
@@ -86,6 +86,24 @@ INSERT INTO `hr_org` VALUES ('0407a44a02ac02f25fd9aeb9b877259f', NULL, NULL, NUL
 INSERT INTO `hr_org` VALUES ('0e34c248c4c3d05e0b05965c758bb2d0', '2', '2', '', '', '', '', '', NULL, '', NULL, '', NULL, b'0');
 INSERT INTO `hr_org` VALUES ('47e9f7ab2a8fe67a7771fcb1897a64eb', NULL, '3', '公司', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, b'0');
 INSERT INTO `hr_org` VALUES ('bb5b19550d85e3358b80d2e23b8904f2', '3', '4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, b'0');
+
+-- ----------------------------
+-- Table structure for hr_position
+-- ----------------------------
+DROP TABLE IF EXISTS `hr_position`;
+CREATE TABLE `hr_position`  (
+  `id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL COMMENT 'id',
+  `jobNumber` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '编号',
+  `jobTitle` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '名称',
+  `jobType` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '岗位类型',
+  `jobOrganization` int(11) NULL DEFAULT NULL COMMENT '岗位编制',
+  `create_by` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '创建者',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '最后修改者',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '最后修改时间',
+  `is_deleted` bit(1) NULL DEFAULT b'0' COMMENT '是否删除',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for role_user_ref
