@@ -27,8 +27,6 @@ import static com.oneutf.bean.result.ApiResultUtils.success;
 @Service
 public class PostTransferServiceImpl extends BeanServiceImpl<PostTransferMapper, PostTransfer> implements PostTransferService {
 
-    @Autowired
-    private EmployeeServiceImpl employeeService;
     @Override
     public ApiResult<String> create(PostTransferDto postTransferDto) {
         PostTransfer postTransfer = BeanUtil.copyProperties(postTransferDto, PostTransfer.class);

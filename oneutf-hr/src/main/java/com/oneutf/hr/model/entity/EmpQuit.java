@@ -13,36 +13,37 @@ import java.time.LocalDate;
 /**
  * @author Administrator
  */
-@TableName("hr_post_transfer")
+@TableName("hr_emp_quit")
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class PostTransfer extends BeanEntity {
+public class EmpQuit extends BeanEntity {
     /**
      * 员工id
      */
     private String empId;
     /**
-     * 调转后的部门
+     * 离职日期
      */
-    private String afterPostId;
+    private LocalDate quitTime;
 
     /**
-     * 调转类型
+     * 离职类型
      */
-    private String TransferType;
-
+    private String quitType;
     /**
-     * 调转原因
+     * 离职去向
      */
-    private String TransferReason;
+    private String quitDirection;
+    /**
+     * 是否进入人才库
+     */
+    private String talentPool;
+
     /**
      * 备注
      */
     private String remarks;
-    /**
-     *调动日期
-     */
-    private LocalDate TransferTime;
+
 
 }
