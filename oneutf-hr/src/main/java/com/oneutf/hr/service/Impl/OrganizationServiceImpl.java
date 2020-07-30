@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 import static com.oneutf.bean.result.ApiResultUtils.success;
 
@@ -78,5 +79,10 @@ public class OrganizationServiceImpl extends BeanServiceImpl<OrganizationMapper,
         });
         PageInfo<OrganizationVo> pageInfo = new PageInfo<>(vos);
         return success(pageInfo);
+    }
+
+    @Override
+    public ApiResult<Map<String, Integer>> month() {
+        return null;
     }
 }

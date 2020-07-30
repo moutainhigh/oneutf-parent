@@ -10,6 +10,8 @@ import com.oneutf.hr.model.vo.OrganizationVo;
 import com.oneutf.sys.model.query.SysUserQuery;
 import com.oneutf.sys.model.vo.SysUserVo;
 
+import java.util.Map;
+
 /**
  * @author Administrator
  */
@@ -48,4 +50,6 @@ public interface OrganizationService extends BeanService<Organization> {
      * @return
      */
     ApiResult<PageInfo<OrganizationVo>> getDataTable(OrganizationQuery qo);
+
+    ApiResult<Map<String, Integer>> month();
 }

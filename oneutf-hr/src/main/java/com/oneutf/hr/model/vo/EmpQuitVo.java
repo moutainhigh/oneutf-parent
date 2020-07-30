@@ -21,6 +21,7 @@ public class EmpQuitVo extends BeanVo {
      * 员工id
      */
     private String empId;
+    private EmployeeVo employeeVo;
     /**
      * 离职日期
      */

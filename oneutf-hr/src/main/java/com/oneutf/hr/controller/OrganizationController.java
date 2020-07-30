@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Map;
 
 /**
  * @author Administrator //组织控制类
@@ -47,6 +48,11 @@ public class OrganizationController extends BaseController {
     @PostMapping("findById")
     public ApiResult<OrganizationVo> findById(String id) {
         return organizationService.findById(id);
+    }
+
+    @PostMapping("month")
+    public ApiResult<Map<String, Integer>> month(){
+        return organizationService.month();
     }
 
 }
