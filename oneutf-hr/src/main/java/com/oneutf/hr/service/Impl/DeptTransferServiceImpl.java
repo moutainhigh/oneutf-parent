@@ -23,6 +23,7 @@ import com.oneutf.util.BeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.oneutf.bean.result.ApiResultUtils.success;
@@ -52,6 +53,8 @@ public class DeptTransferServiceImpl extends BeanServiceImpl<DeptTransferMapper,
     public ApiResult<DeptTransferVo> findById(String id) {
         DeptTransfer deptTransfer = this.getById(id);
         DeptTransferVo deptTransferVo = BeanUtil.copyProperties(deptTransfer, DeptTransferVo.class);
+        deptTransferVo.setEmployeeVo(employeeService.findById(deptTransferVo.getEmpId()).getData());
+        deptTransferVo.setAfterDept(organizationService.findById(deptTransferVo.getAfterDeptId()).getData());
         return success(deptTransferVo);
     }
 
@@ -72,11 +75,12 @@ public class DeptTransferServiceImpl extends BeanServiceImpl<DeptTransferMapper,
     public ApiResult<PageInfo<DeptTransferVo>> getDataTable(DeptTransferQuery qo) {
         PageHelper.startPage(qo.getPage(), qo.getLimit());
         List<DeptTransfer> entityList = lambdaQuery().list();
-        List<DeptTransferVo> vos = BeanUtil.voTransfer(entityList, DeptTransferVo.class);
-        vos.forEach(vo -> {
-            vo.setEmpName(employeeService.getById(vo.getEmpId()).getName());
-            vo.setAfterDeptName(organizationService.getById(vo.getAfterDeptId()).getName());
+
+        List<DeptTransferVo> vos = new ArrayList<>();
+        entityList.forEach(entity -> {
+            vos.add(this.findById(entity.getId()).getData());
         });
+
         PageInfo<DeptTransferVo> pageInfo = new PageInfo<>(vos);
         return success(pageInfo);
     }

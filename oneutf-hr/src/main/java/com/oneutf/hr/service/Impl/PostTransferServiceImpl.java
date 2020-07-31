@@ -10,19 +10,18 @@ import com.oneutf.hr.model.dto.DeptTransferDto;
 import com.oneutf.hr.model.dto.PostTransferDto;
 import com.oneutf.hr.model.entity.DeptTransfer;
 import com.oneutf.hr.model.entity.Employee;
+import com.oneutf.hr.model.entity.Organization;
 import com.oneutf.hr.model.entity.PostTransfer;
 import com.oneutf.hr.model.query.DeptTransferQuery;
 import com.oneutf.hr.model.query.PostTransferQuery;
 import com.oneutf.hr.model.vo.DeptTransferVo;
 import com.oneutf.hr.model.vo.PostTransferVo;
-import com.oneutf.hr.service.DeptTransferService;
-import com.oneutf.hr.service.EmployeeService;
-import com.oneutf.hr.service.PositionService;
-import com.oneutf.hr.service.PostTransferService;
+import com.oneutf.hr.service.*;
 import com.oneutf.util.BeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.oneutf.bean.result.ApiResultUtils.success;
@@ -35,6 +34,9 @@ public class PostTransferServiceImpl extends BeanServiceImpl<PostTransferMapper,
 
     @Autowired
     private PositionService positionService;
+
+    @Autowired
+    private OrganizationService organizationService;
 
     @Override
     public ApiResult<String> create(PostTransferDto postTransferDto) {
@@ -53,6 +55,9 @@ public class PostTransferServiceImpl extends BeanServiceImpl<PostTransferMapper,
     public ApiResult<PostTransferVo> findById(String id) {
         PostTransfer postTransfer = this.getById(id);
         PostTransferVo postTransferVo = BeanUtil.copyProperties(postTransfer,PostTransferVo.class);
+        postTransferVo.setEmployeeVo(employeeService.findById(postTransferVo.getEmpId()).getData());
+        postTransferVo.setAfterPostVo(positionService.findById(postTransferVo.getAfterPostId()).getData());
+        postTransferVo.setOrganizationVo(employeeService.findById(postTransferVo.getEmpId()).getData().getOrganizationVo());
         return success(postTransferVo);
     }
 
@@ -73,11 +78,12 @@ public class PostTransferServiceImpl extends BeanServiceImpl<PostTransferMapper,
     public ApiResult<PageInfo<PostTransferVo>> getDataTable(PostTransferQuery qo) {
         PageHelper.startPage(qo.getPage(), qo.getLimit());
         List<PostTransfer> entityList = lambdaQuery().list();
-        List<PostTransferVo> vos = BeanUtil.voTransfer(entityList, PostTransferVo.class);
-        vos.forEach(vo -> {
-            vo.setEmpName(employeeService.getById(vo.getEmpId()).getName());
-            vo.setAfterPostName(positionService.getById(vo.getAfterPostId()).getJobTitle());
+
+        List<PostTransferVo> vos = new ArrayList<>();
+        entityList.forEach(entity -> {
+            vos.add(this.findById(entity.getId()).getData());
         });
+
         PageInfo<PostTransferVo> pageInfo = new PageInfo<>(vos);
         return success(pageInfo);
     }

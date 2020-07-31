@@ -16,6 +16,7 @@ import com.oneutf.util.BeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.oneutf.bean.result.ApiResultUtils.success;
@@ -44,6 +45,8 @@ public class EmployeeServiceImpl extends BeanServiceImpl<EmployeeMapper,Employee
     public ApiResult<EmployeeVo> findById(String id) {
         Employee employee = this.getById(id);
         EmployeeVo employeeVo = BeanUtil.copyProperties(employee,EmployeeVo.class);
+        employeeVo.setOrganizationVo(organizationService.findById(employeeVo.getDeptId()).getData());
+        employeeVo.setPositionVo(positionService.findById(employeeVo.getPositionId()).getData());
         return success(employeeVo);
     }
 
@@ -64,11 +67,12 @@ public class EmployeeServiceImpl extends BeanServiceImpl<EmployeeMapper,Employee
     public ApiResult<PageInfo<EmployeeVo>> getDataTable(EmployeeQuery qo) {
         PageHelper.startPage(qo.getPage(), qo.getLimit());
         List<Employee> entityList = lambdaQuery().list();
-        List<EmployeeVo> vos = BeanUtil.voTransfer(entityList, EmployeeVo.class);
-        vos.forEach(vo -> {
-            vo.setDeptName(organizationService.findById(vo.getDeptId()).getData().getName());
-            vo.setPositionName(positionService.findById(vo.getPositionId()).getData().getJobTitle());
+
+        List<EmployeeVo> vos = new ArrayList<>();
+        entityList.forEach(entity -> {
+            vos.add(this.findById(entity.getId()).getData());
         });
+
         PageInfo<EmployeeVo> pageInfo = new PageInfo<>(vos);
         return success(pageInfo);
     }

@@ -21,12 +21,12 @@ public class DeptTransferVo extends BeanVo {
      * 员工名字
      */
     private String empId;
-    private String empName;
+    private EmployeeVo employeeVo;
     /**
      * 调转后的部门
      */
     private String afterDeptId;
-    private String afterDeptName;
+    private OrganizationVo afterDept;
 
     /**
      * 调转类型

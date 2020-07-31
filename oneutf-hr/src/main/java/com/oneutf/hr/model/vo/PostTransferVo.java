@@ -21,12 +21,18 @@ public class PostTransferVo extends BeanVo {
      * 员工id
      */
     private String empId;
-    private String empName;
+    private EmployeeVo employeeVo;
+
+    /**
+     * 部门
+     */
+    private OrganizationVo organizationVo;
+
     /**
      * 调转后的岗位
      */
     private String afterPostId;
-    private String afterPostName;
+    private PositionVo afterPostVo;
 
     /**
      * 调转类型
